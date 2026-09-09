@@ -23,10 +23,16 @@ jobs:
         run: |
           unzip -q SAMP-Mobile-GTA-2.11.zip -d project
 
-      - name: Fix RGBA header case
+      - name: Fix header case
         run: |
-          if [ -f project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/game/rgba.h ]; then
-            cp project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/game/rgba.h project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/game/RGBA.h
+          cd project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/gui/samp_widgets
+          if [ -f playertablist.h ] && [ ! -e playerTabList.h ]; then
+            ln -s playertablist.h playerTabList.h
+          fi
+
+          cd ../../../game
+          if [ -f rgba.h ] && [ ! -e RGBA.h ]; then
+            ln -s rgba.h RGBA.h
           fi
 
       - name: Build APK
