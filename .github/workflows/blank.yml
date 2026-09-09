@@ -22,6 +22,8 @@ jobs:
       - name: Extract project
         run: |
           unzip -q SAMP-Mobile-GTA-2.11.zip -d project
+          mkdir -p project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/gui/samp_widgets
+          cp playerTabList.h project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/gui/samp_widgets/playerTabList.h
 
       - name: Build APK
         working-directory: project/SAMP-Mobile-GTA-2.11
