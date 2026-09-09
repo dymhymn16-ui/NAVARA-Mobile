@@ -51,6 +51,12 @@ jobs:
           };
           EOF
 
+      - name: Fix RGBA header case
+        run: |
+          if [ -f project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/game/rgba.h ]; then
+            mv project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/game/rgba.h project/SAMP-Mobile-GTA-2.11/app/src/main/cpp/samp/game/RGBA.h
+          fi
+
       - name: Build APK
         working-directory: project/SAMP-Mobile-GTA-2.11
         run: |
